@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estet Dent — Вініри · Протезування · Мукачево</title>
+  <meta name="description" content="Estet Dent — стоматологічна клініка в Мукачеві. Керамічні вініри, протезування, лікування, естетика зубів. вул. Миру, 71/2, Мукачево, 89600.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            estet: {
+              gold: '#D4AF37',
+              'gold-light': '#C9A962',
+              marble: '#FAFAF9',
+              charcoal: '#1E293B',
+              dark: '#0F172A',
+              cream: '#FFFBEB'
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif']
+          },
+          boxShadow: {
+            gold: '0 4px 24px rgba(212, 175, 55, 0.25)',
+            marble: '0 8px 40px rgba(15, 23, 42, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .marble-bg {
+      background-color: #FAFAF9;
+      background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 40%),
+        linear-gradient(135deg, #FAFAF9 0%, #F5F5F4 50%, #FAFAF9 100%);
+    }
+    .hero-blob {
+      border-radius: 60% 40% 55% 45% / 55% 45% 55% 45%;
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #D4AF37 0%, #C9A962 50%, #D4AF37 100%);
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #D4AF37, #C9A962);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #D4AF37, #C9A962);
+      color: white;
+      border-color: transparent;
+    }
+    .mobile-menu {
+      visibility: hidden;
+    }
+    .mobile-menu.open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+    .menu-overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .menu-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .hamburger {
+      width: 1.5rem;
+      height: 1.125rem;
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hamburger-line {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+      border-radius: 999px;
+      transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.open .hamburger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger.open .hamburger-line:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .hamburger.open .hamburger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+    .gallery-slide {
+      transition: transform 0.5s ease;
+    }
+    .star-gold { color: #D4AF37; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #FAFAF9; }
+    ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
+    .doctor-placeholder,
+    .estet-placeholder {
+      background: linear-gradient(145deg, #FFFBEB 0%, #FAFAF9 45%, #F5F0E1 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .doctor-placeholder::before,
+    .estet-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.12) 0%, transparent 55%);
+    }
+    .doctor-placeholder::after,
+    .estet-placeholder::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      right: -10%;
+      width: 60%;
+      height: 60%;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+    }
+    .doctor-placeholder-name {
+      position: relative;
+      z-index: 1;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      color: #1E293B;
+      line-height: 1.1;
+    }
+    .doctor-placeholder-sub {
+      position: relative;
+      z-index: 1;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #D4AF37;
+      margin-top: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+    .doctor-placeholder-icon {
+      position: relative;
+      z-index: 1;
+      width: 2rem;
+      height: 2rem;
+      margin-bottom: 0.75rem;
+      opacity: 0.45;
+    }
+    html { scroll-padding-top: 5rem; }
+    body { overflow-x: hidden; }
+    .tabs-scroll {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .tabs-scroll::-webkit-scrollbar { display: none; }
+    @media (max-width: 639px) {
+      .doctor-placeholder-sub {
+        letter-spacing: 0.08em;
+        font-size: 0.58rem;
+        padding: 0 0.5rem;
+      }
+      .hero-visual { max-width: 17.5rem; }
+      .section-title { font-size: 1.625rem; line-height: 1.25; }
+    }
+    .veneer-dot { transition: width 0.2s ease, background-color 0.2s ease; }
+    .patients-dot { transition: width 0.2s ease, background-color 0.2s ease; }
+    #veneerPrev:disabled, #veneerNext:disabled,
+    #patientsPrev:disabled, #patientsNext:disabled { opacity: 0.35; cursor: not-allowed; }
+    .form-input { font-size: 16px; }
+    @media (min-width: 640px) {
+      .form-input { font-size: 0.875rem; }
+    }
+  </style>
+</head>
+<body class="font-sans text-estet-charcoal bg-white antialiased">
+
+  <!-- A. HEADER -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-stone-100 transition-shadow duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 group">
+          <svg class="w-10 h-10 lg:w-12 lg:h-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Estet Dent logo">
+            <circle cx="24" cy="24" r="22" stroke="#D4AF37" stroke-width="1.5" fill="none" opacity="0.3"/>
+            <path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#FAFAF9" stroke="#D4AF37" stroke-width="1.5"/>
+            <path d="M24 14 C21 14 19 16 19 19 C19 22 20 25 21 27 C22 29 23 31 24 33 C25 31 26 29 27 27 C28 25 29 22 29 19 C29 16 27 14 24 14Z" fill="#D4AF37" opacity="0.6"/>
+            <path d="M8 20 Q16 8 24 12 Q32 8 40 20" stroke="#D4AF37" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <circle cx="36" cy="14" r="2" fill="#D4AF37" opacity="0.8"/>
+            <path d="M37 10 L38 8 L39 10" stroke="#D4AF37" stroke-width="1" fill="none"/>
+          </svg>
+          <div>
+            <span class="font-display font-bold text-lg lg:text-xl tracking-wide text-estet-charcoal group-hover:text-estet-gold transition-colors">Estet Dent</span>
+            <span class="hidden sm:block text-[10px] lg:text-xs text-stone-400 tracking-widest uppercase">Мукачево</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
+          <a href="#veneers" class="text-sm font-medium text-stone-600 hover:text-estet-gold transition-colors">Вініри</a>
+          <a href="#prosthetics" class="text-sm font-medium text-stone-600 hover:text-estet-gold transition-colors">Протезування</a>
+          <a href="#team" class="text-sm font-medium text-stone-600 hover:text-estet-gold transition-colors">Команда</a>
+          <a href="#patients" class="text-sm font-medium text-stone-600 hover:text-estet-gold transition-colors">Пацієнти</a>
+          <a href="#reviews" class="text-sm font-medium text-stone-600 hover:text-estet-gold transition-colors">Відгуки</a>
+          <a href="#contacts" class="text-sm font-medium text-stone-600 hover:text-estet-gold transition-colors">Контакти</a>
+        </nav>
+
+        <!-- CTA + Phone -->
+        <div class="hidden lg:flex items-center gap-4">
+          <a href="tel:+380508038008" class="text-sm font-semibold text-estet-charcoal hover:text-estet-gold transition-colors whitespace-nowrap">+380 50 803 80 08</a>
+          <a href="#contacts" class="gold-gradient text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-gold hover:opacity-90 transition-opacity whitespace-nowrap">Записатися</a>
+        </div>
+
+        <!-- Mobile: menu -->
+        <div class="flex items-center lg:hidden">
+          <button id="menuBtn" type="button" class="relative z-[120] p-2.5 rounded-lg text-estet-charcoal hover:bg-stone-50 transition-colors" aria-label="Відкрити меню" aria-expanded="false" aria-controls="mobileMenu">
+            <span id="hamburgerIcon" class="hamburger" aria-hidden="true">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay + drawer -->
+  <div id="menuOverlay" class="menu-overlay lg:hidden fixed inset-0 bg-estet-dark/50 backdrop-blur-[2px] z-[110]" aria-hidden="true"></div>
+  <nav id="mobileMenu" class="mobile-menu lg:hidden fixed inset-y-0 right-0 w-[min(100vw,20rem)] bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-out z-[120] flex flex-col" aria-label="Мобільне меню" aria-hidden="true">
+    <div class="flex items-center justify-between h-16 px-4 border-b border-stone-100 shrink-0">
+      <span class="font-display font-bold text-lg text-estet-charcoal">Меню</span>
+      <button id="menuCloseBtn" type="button" class="p-2.5 rounded-lg text-estet-charcoal hover:bg-stone-50 transition-colors" aria-label="Закрити меню">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="flex-1 overflow-y-auto p-4 flex flex-col gap-1">
+      <a href="#veneers" class="mobile-link py-3.5 px-4 rounded-xl text-base font-medium text-stone-700 hover:bg-estet-cream hover:text-estet-gold transition-colors">Вініри</a>
+      <a href="#prosthetics" class="mobile-link py-3.5 px-4 rounded-xl text-base font-medium text-stone-700 hover:bg-estet-cream hover:text-estet-gold transition-colors">Протезування</a>
+      <a href="#team" class="mobile-link py-3.5 px-4 rounded-xl text-base font-medium text-stone-700 hover:bg-estet-cream hover:text-estet-gold transition-colors">Команда</a>
+      <a href="#patients" class="mobile-link py-3.5 px-4 rounded-xl text-base font-medium text-stone-700 hover:bg-estet-cream hover:text-estet-gold transition-colors">Пацієнти</a>
+      <a href="#reviews" class="mobile-link py-3.5 px-4 rounded-xl text-base font-medium text-stone-700 hover:bg-estet-cream hover:text-estet-gold transition-colors">Відгуки</a>
+      <a href="#contacts" class="mobile-link py-3.5 px-4 rounded-xl text-base font-medium text-stone-700 hover:bg-estet-cream hover:text-estet-gold transition-colors">Контакти</a>
+    </div>
+    <div class="p-4 border-t border-stone-100 shrink-0 space-y-3">
+      <a href="tel:+380508038008" class="flex items-center justify-center gap-2 py-3 px-4 font-semibold text-estet-gold rounded-xl border border-estet-gold/30 hover:bg-estet-cream transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        +380 50 803 80 08
+      </a>
+      <a href="#contacts" class="mobile-link block gold-gradient text-white text-center font-semibold py-3.5 px-6 rounded-full shadow-gold hover:opacity-90 transition-opacity">Записатися на консультацію</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- B. HERO -->
+    <section class="relative marble-bg pt-20 sm:pt-24 lg:pt-32 pb-12 sm:pb-16 lg:pb-24 overflow-x-clip">
+      <div class="absolute top-20 -right-16 sm:right-0 w-48 sm:w-72 lg:w-96 h-48 sm:h-72 lg:h-96 bg-estet-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 -left-16 sm:left-0 w-40 sm:w-56 lg:w-72 h-40 sm:h-56 lg:h-72 bg-estet-cream rounded-full blur-3xl pointer-events-none"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
+          <div class="fade-in order-2 lg:order-1 text-center lg:text-left">
+            <p class="font-display text-[10px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.25em] uppercase text-estet-gold mb-3 sm:mb-4">Estet Dent · Стоматологічна клініка</p>
+            <h1 class="font-serif text-[1.625rem] leading-[1.2] sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] sm:leading-tight font-bold text-estet-dark mb-4 sm:mb-6">
+              <span class="block sm:inline text-estet-gold">ВІНІРИ</span><span class="hidden sm:inline text-estet-gold"> · </span>
+              <span class="block sm:inline">ПРОТЕЗУВАННЯ</span><span class="hidden sm:inline"> · </span>
+              <span class="block sm:inline">ЕСТЕТИКА ЗУБІВ</span>
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl font-serif italic text-stone-500 mb-2">«Ідеальна посмішка починається тут»</p>
+            <p class="text-xs sm:text-sm md:text-base text-stone-400 mb-6 sm:mb-8 leading-relaxed">Вініри · протезування · лікування<br class="sm:hidden"> Мукачево · вул. Миру, 71/2</p>
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md mx-auto lg:mx-0 lg:max-w-none">
+              <a href="#contacts" class="gold-gradient text-white font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full shadow-gold text-center text-sm sm:text-base hover:opacity-90 transition-opacity">Записатися на консультацію</a>
+              <a href="#veneers" class="border-2 border-estet-gold text-estet-gold font-semibold px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-center text-sm sm:text-base hover:bg-estet-cream transition-colors">Вініри 2025 — кейси</a>
+            </div>
+          </div>
+          <div class="fade-in order-1 lg:order-2 relative px-2 sm:px-0">
+            <div class="relative hero-visual mx-auto lg:max-w-none lg:w-full">
+              <div class="hero-blob overflow-hidden shadow-marble aspect-[4/5] max-h-[420px] sm:max-h-none lg:aspect-[5/6] estet-placeholder">
+                <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+                <span class="doctor-placeholder-name text-2xl lg:text-3xl">Estet Dent</span>
+                <span class="doctor-placeholder-sub">Фото скоро</span>
+              </div>
+              <div class="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 lg:-bottom-6 lg:-left-6 w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 hero-blob overflow-hidden shadow-gold border-4 border-white estet-placeholder">
+                <svg class="doctor-placeholder-icon w-5 h-5 mb-1" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+                <span class="doctor-placeholder-name text-sm lg:text-base">Вініри</span>
+                <span class="doctor-placeholder-sub text-[0.55rem] mt-0.5">Фото скоро</span>
+              </div>
+              <div class="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 shadow-marble">
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5 text-estet-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <span class="text-xs sm:text-sm font-semibold">Premium</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- C. VENEERS 2025 -->
+    <section id="veneers" class="py-16 lg:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="fade-in text-center mb-12 lg:mb-16">
+          <span class="font-display text-xs tracking-[0.3em] uppercase text-estet-gold">Flagship service</span>
+          <h2 class="section-title font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-estet-dark mt-3 mb-4">Вініри 2025</h2>
+          <p class="text-stone-500 max-w-2xl mx-auto">Керамічні вініри — наш ключовий напрямок. Природна естетика, ідеальна форма та колір зубів.</p>
+        </div>
+
+        <div class="fade-in relative">
+          <div id="veneerGallery" class="overflow-hidden rounded-2xl lg:overflow-visible">
+            <div id="veneerTrack" class="gallery-slide flex lg:grid lg:grid-cols-4 lg:gap-4 transition-transform duration-500">
+              <div class="min-w-full lg:min-w-0 px-1 lg:px-0">
+                <div class="aspect-[4/5] sm:aspect-[3/4] max-w-[240px] sm:max-w-sm lg:max-w-none mx-auto rounded-xl overflow-hidden estet-placeholder">
+                  <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+                  <span class="doctor-placeholder-name text-lg sm:text-xl">Кейс #1</span>
+                  <span class="doctor-placeholder-sub">Естетика · Фото скоро</span>
+                </div>
+              </div>
+              <div class="min-w-full lg:min-w-0 px-1 lg:px-0">
+                <div class="aspect-[4/5] sm:aspect-[3/4] max-w-[240px] sm:max-w-sm lg:max-w-none mx-auto rounded-xl overflow-hidden estet-placeholder">
+                  <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+                  <span class="doctor-placeholder-name text-lg sm:text-xl">Кейс #2</span>
+                  <span class="doctor-placeholder-sub">Форма · Фото скоро</span>
+                </div>
+              </div>
+              <div class="min-w-full lg:min-w-0 px-1 lg:px-0">
+                <div class="aspect-[4/5] sm:aspect-[3/4] max-w-[240px] sm:max-w-sm lg:max-w-none mx-auto rounded-xl overflow-hidden estet-placeholder">
+                  <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+                  <span class="doctor-placeholder-name text-lg sm:text-xl">Кейс #3</span>
+                  <span class="doctor-placeholder-sub">Колір · Фото скоро</span>
+                </div>
+              </div>
+              <div class="min-w-full lg:min-w-0 px-1 lg:px-0">
+                <div class="aspect-[4/5] sm:aspect-[3/4] max-w-[240px] sm:max-w-sm lg:max-w-none mx-auto rounded-xl overflow-hidden estet-placeholder">
+                  <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+                  <span class="doctor-placeholder-name text-lg sm:text-xl">Кейс #4</span>
+                  <span class="doctor-placeholder-sub">Результат · Фото скоро</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="veneerNav" class="flex flex-col items-center gap-4 mt-6 lg:hidden">
+            <div id="veneerDots" class="flex gap-2">
+              <button class="veneer-dot w-2 h-2 rounded-full bg-estet-gold transition-all" data-index="0" aria-label="Кейс 1"></button>
+              <button class="veneer-dot w-2 h-2 rounded-full bg-stone-300 transition-all" data-index="1" aria-label="Кейс 2"></button>
+              <button class="veneer-dot w-2 h-2 rounded-full bg-stone-300 transition-all" data-index="2" aria-label="Кейс 3"></button>
+              <button class="veneer-dot w-2 h-2 rounded-full bg-stone-300 transition-all" data-index="3" aria-label="Кейс 4"></button>
+            </div>
+            <div class="flex justify-center gap-3">
+            <button id="veneerPrev" class="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center hover:border-estet-gold hover:text-estet-gold transition-colors" aria-label="Попередній">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button id="veneerNext" class="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center hover:border-estet-gold hover:text-estet-gold transition-colors" aria-label="Наступний">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in mt-12 text-center">
+          <a href="#contacts" class="inline-flex items-center gap-2 gold-gradient text-white font-semibold px-8 py-3.5 rounded-full shadow-gold hover:opacity-90 transition-opacity">
+            Обговорити ваш кейс
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- D. SERVICES -->
+    <section id="services" class="py-16 lg:py-24 marble-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="fade-in text-center mb-10">
+          <h2 class="section-title font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-estet-dark mb-4">Послуги</h2>
+          <p class="text-stone-500">Усі види стоматологічних послуг під одним дахом</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="fade-in tabs-scroll overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 pb-2 mb-8 sm:mb-10">
+          <div class="flex flex-nowrap sm:flex-wrap justify-start sm:justify-center gap-2 min-w-max sm:min-w-0 w-max sm:w-full mx-auto sm:mx-0" role="tablist">
+          <button class="tab-btn active shrink-0 text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full border border-stone-200 transition-all" data-tab="all">Усі</button>
+          <button class="tab-btn shrink-0 text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full border border-stone-200 transition-all" data-tab="veneers">Вініри</button>
+          <button class="tab-btn shrink-0 text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full border border-stone-200 transition-all" data-tab="prosthetics">Протези</button>
+          <button class="tab-btn shrink-0 text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full border border-stone-200 transition-all" data-tab="treatment">Лікування</button>
+          <button class="tab-btn shrink-0 text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full border border-stone-200 transition-all" data-tab="aesthetics">Естетика</button>
+          <button class="tab-btn shrink-0 text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full border border-stone-200 transition-all" data-tab="kids">Дитяча</button>
+          </div>
+        </div>
+
+        <div id="servicesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <!-- Veneers -->
+          <div class="service-card fade-in bg-white rounded-2xl overflow-hidden shadow-marble hover:shadow-gold transition-shadow" data-category="veneers">
+            <div class="aspect-[16/10] overflow-hidden estet-placeholder">
+              <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+              <span class="doctor-placeholder-name text-lg">Керамічні вініри</span>
+              <span class="doctor-placeholder-sub">Фото скоро</span>
+            </div>
+            <div class="p-5 sm:p-6">
+              <span class="text-xs font-display tracking-widest uppercase text-estet-gold">Flagship</span>
+              <h3 class="font-serif text-xl font-bold mt-2 mb-3">Керамічні вініри</h3>
+              <p class="text-stone-500 text-sm leading-relaxed">Тонкі керамічні накладки для ідеальної форми, кольору та пропорцій посмішки. Результат, який виглядає природно.</p>
+            </div>
+          </div>
+
+          <!-- Prosthetics -->
+          <div class="service-card fade-in bg-white rounded-2xl overflow-hidden shadow-marble hover:shadow-gold transition-shadow" data-category="prosthetics">
+            <div class="aspect-[16/10] overflow-hidden estet-placeholder">
+              <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+              <span class="doctor-placeholder-name text-lg">Протезування</span>
+              <span class="doctor-placeholder-sub">Фото скоро</span>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="font-serif text-xl font-bold mb-3">Протезування</h3>
+              <p class="text-stone-500 text-sm leading-relaxed">Коронки, мости, знімні та незнімні протези. Відновлення жувальної функції та естетики.</p>
+            </div>
+          </div>
+
+          <!-- Treatment -->
+          <div class="service-card fade-in bg-white rounded-2xl overflow-hidden shadow-marble hover:shadow-gold transition-shadow" data-category="treatment">
+            <div class="aspect-[16/10] overflow-hidden estet-placeholder">
+              <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+              <span class="doctor-placeholder-name text-lg">Лікування</span>
+              <span class="doctor-placeholder-sub">Фото скоро</span>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="font-serif text-xl font-bold mb-3">Лікування</h3>
+              <p class="text-stone-500 text-sm leading-relaxed">Терапевтична стоматологія: карієс, пульпіт, профілактика. Комфортне лікування без стресу.</p>
+            </div>
+          </div>
+
+          <!-- Kids -->
+          <div class="service-card fade-in bg-white rounded-2xl overflow-hidden shadow-marble hover:shadow-gold transition-shadow" data-category="kids">
+            <div class="aspect-[16/10] overflow-hidden estet-placeholder">
+              <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+              <span class="doctor-placeholder-name text-lg">Дитяча</span>
+              <span class="doctor-placeholder-sub">Фото скоро</span>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="font-serif text-xl font-bold mb-3">Дитяча стоматологія</h3>
+              <p class="text-stone-500 text-sm leading-relaxed">Дбайливий підхід до маленьких пацієнтів. Профілактика, лікування та формування здорових звичок.</p>
+            </div>
+          </div>
+
+          <!-- Aesthetics -->
+          <div class="service-card fade-in bg-white rounded-2xl overflow-hidden shadow-marble hover:shadow-gold transition-shadow" data-category="aesthetics">
+            <div class="aspect-[16/10] overflow-hidden estet-placeholder">
+              <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+              <span class="doctor-placeholder-name text-lg">Естетика зубів</span>
+              <span class="doctor-placeholder-sub">Фото скоро</span>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="font-serif text-xl font-bold mb-3">Естетика зубів</h3>
+              <p class="text-stone-500 text-sm leading-relaxed">Комплексний підхід: відбілювання, реставрація, дизайн посмішки. Гармонія обличчя та зубів.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- E. ATMOSPHERE -->
+    <section id="atmosphere" class="py-16 lg:py-24 bg-estet-dark text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="fade-in text-center mb-12 lg:mb-16">
+          <span class="font-display text-xs tracking-[0.3em] uppercase text-estet-gold">Інтер'єр</span>
+          <h2 class="section-title font-serif text-2xl sm:text-3xl lg:text-4xl font-bold mt-3 mb-4">Estet Dent — атмосфера</h2>
+          <p class="text-stone-400 max-w-2xl mx-auto">Marble, золото, ring lights — простір, де комфорт зустрічається з медичною точністю</p>
+        </div>
+
+        <div class="fade-in grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+          <div class="sm:col-span-2 lg:row-span-2 relative rounded-2xl overflow-hidden estet-placeholder min-h-[220px] sm:min-h-[280px] lg:min-h-[400px]">
+            <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+            <span class="doctor-placeholder-name text-xl sm:text-2xl">Marble lobby</span>
+            <span class="doctor-placeholder-sub">Фото скоро</span>
+          </div>
+          <div class="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-square estet-placeholder">
+            <svg class="doctor-placeholder-icon w-5 h-5 mb-1" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+            <span class="doctor-placeholder-name text-sm">Gold signage</span>
+            <span class="doctor-placeholder-sub text-[0.55rem] mt-0.5">Фото скоро</span>
+          </div>
+          <div class="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-square estet-placeholder">
+            <svg class="doctor-placeholder-icon w-5 h-5 mb-1" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+            <span class="doctor-placeholder-name text-sm">Ring lights</span>
+            <span class="doctor-placeholder-sub text-[0.55rem] mt-0.5">Фото скоро</span>
+          </div>
+          <div class="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-square estet-placeholder">
+            <svg class="doctor-placeholder-icon w-5 h-5 mb-1" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+            <span class="doctor-placeholder-name text-sm">Hospitality</span>
+            <span class="doctor-placeholder-sub text-[0.55rem] mt-0.5">Фото скоро</span>
+          </div>
+          <div class="relative rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-square estet-placeholder">
+            <svg class="doctor-placeholder-icon w-5 h-5 mb-1" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+            <span class="doctor-placeholder-name text-sm">Premium space</span>
+            <span class="doctor-placeholder-sub text-[0.55rem] mt-0.5">Фото скоро</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- F. FOUNDER -->
+    <section id="founder" class="py-16 lg:py-24 bg-estet-cream">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="fade-in grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div class="relative max-w-md mx-auto lg:max-w-none">
+            <div class="rounded-2xl overflow-hidden shadow-marble aspect-[4/5] doctor-placeholder">
+              <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/>
+                <path d="M8 20 Q16 8 24 12 Q32 8 40 20" stroke="#D4AF37" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+              <span class="doctor-placeholder-name text-4xl lg:text-5xl">Тетяна</span>
+              <span class="doctor-placeholder-sub">Засновниця · Фото скоро</span>
+            </div>
+          </div>
+          <div>
+            <span class="font-display text-xs tracking-[0.3em] uppercase text-estet-gold">Філософія</span>
+            <h2 class="section-title font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-estet-dark mt-3 mb-6">Довіра, яку засновано на результаті</h2>
+            <blockquote class="text-base sm:text-lg text-stone-600 leading-relaxed mb-6 border-l-4 border-estet-gold pl-4 sm:pl-6 italic">
+              «Кожна посмішка — це історія. Моя місія — допомогти вам відчути впевненість, коли дивитесь у дзеркало. Estet Dent — це простір, де медична точність поєднується з естетичним баченням.»
+            </blockquote>
+            <p class="text-stone-500 mb-8">Тетяна — засновниця клініки Estet Dent у Мукачеві. Спеціалізація на естетичній стоматології, вінірах та протезуванні.</p>
+            <div class="flex flex-wrap gap-4">
+              <a href="https://instagram.com/tanya_st89" target="_blank" rel="noopener" class="inline-flex items-center gap-2 border border-estet-gold text-estet-gold font-medium px-6 py-2.5 rounded-full hover:bg-white transition-colors">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                @tanya_st89
+              </a>
+              <a href="#contacts" class="gold-gradient text-white font-semibold px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity">Записатися</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- G. TEAM -->
+    <section id="team" class="py-16 lg:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="fade-in text-center mb-12 lg:mb-16">
+          <span class="font-display text-xs tracking-[0.3em] uppercase text-estet-gold">Команда</span>
+          <h2 class="section-title font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-estet-dark mt-3 mb-4">Професіонали, яким довіряють</h2>
+          <p class="text-stone-500 max-w-2xl mx-auto">Досвідчені лікарі з фокусом на естетичну стоматологію та комфорт пацієнта</p>
+        </div>
+
+        <div class="fade-in grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+          <div class="fade-in group text-center max-w-xs mx-auto w-full">
+            <div class="relative mx-auto w-48 h-48 rounded-full overflow-hidden mb-5 ring-4 ring-estet-cream group-hover:ring-estet-gold transition-all doctor-placeholder">
+              <svg class="doctor-placeholder-icon w-6 h-6 mb-2" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/>
+              </svg>
+              <span class="doctor-placeholder-name text-2xl">Тетяна</span>
+              <span class="doctor-placeholder-sub mt-1">Фото скоро</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold">Тетяна</h3>
+            <p class="text-estet-gold text-sm font-medium mt-1">Засновниця · Естетична стоматологія</p>
+          </div>
+          <div class="fade-in group text-center max-w-xs mx-auto w-full">
+            <div class="relative mx-auto w-48 h-48 rounded-full overflow-hidden mb-5 ring-4 ring-estet-cream group-hover:ring-estet-gold transition-all doctor-placeholder">
+              <svg class="doctor-placeholder-icon w-6 h-6 mb-2" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/>
+              </svg>
+              <span class="doctor-placeholder-name text-2xl">Олена</span>
+              <span class="doctor-placeholder-sub mt-1">Фото скоро</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold">Олена</h3>
+            <p class="text-estet-gold text-sm font-medium mt-1">Терапевтична стоматологія</p>
+          </div>
+          <div class="fade-in group text-center max-w-xs mx-auto w-full sm:col-span-2 lg:col-span-1">
+            <div class="relative mx-auto w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden mb-5 ring-4 ring-estet-cream group-hover:ring-estet-gold transition-all doctor-placeholder">
+              <svg class="doctor-placeholder-icon w-6 h-6 mb-2" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/>
+              </svg>
+              <span class="doctor-placeholder-name text-2xl">Ірина</span>
+              <span class="doctor-placeholder-sub mt-1">Фото скоро</span>
+            </div>
+            <h3 class="font-serif text-xl font-bold">Ірина</h3>
+            <p class="text-estet-gold text-sm font-medium mt-1">Протезування · Лікування</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- H. PATIENTS -->
+    <section id="patients" class="py-16 lg:py-24 marble-bg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="fade-in text-center mb-12">
+          <span class="font-display text-xs tracking-[0.3em] uppercase text-estet-gold">#ПАЦІЄНТИ</span>
+          <h2 class="section-title font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-estet-dark mt-3 mb-4">Результати, якими пишаємось</h2>
+        </div>
+
+        <div class="fade-in relative mb-16">
+          <div id="patientsGallery" class="overflow-hidden rounded-2xl md:overflow-visible">
+            <div id="patientsTrack" class="gallery-slide flex md:grid md:grid-cols-4 md:gap-4 transition-transform duration-500">
+              <div class="min-w-full md:min-w-0 px-1 md:px-0">
+                <div class="aspect-square max-w-xs mx-auto md:max-w-none rounded-xl overflow-hidden estet-placeholder">
+                  <span class="doctor-placeholder-name text-base sm:text-lg">#Пацієнт</span>
+                  <span class="doctor-placeholder-sub">Фото скоро</span>
+                </div>
+              </div>
+              <div class="min-w-full md:min-w-0 px-1 md:px-0">
+                <div class="aspect-square max-w-xs mx-auto md:max-w-none rounded-xl overflow-hidden estet-placeholder">
+                  <span class="doctor-placeholder-name text-base sm:text-lg">#Пацієнт</span>
+                  <span class="doctor-placeholder-sub">Фото скоро</span>
+                </div>
+              </div>
+              <div class="min-w-full md:min-w-0 px-1 md:px-0">
+                <div class="aspect-square max-w-xs mx-auto md:max-w-none rounded-xl overflow-hidden estet-placeholder">
+                  <span class="doctor-placeholder-name text-base sm:text-lg">#Пацієнт</span>
+                  <span class="doctor-placeholder-sub">Фото скоро</span>
+                </div>
+              </div>
+              <div class="min-w-full md:min-w-0 px-1 md:px-0">
+                <div class="aspect-square max-w-xs mx-auto md:max-w-none rounded-xl overflow-hidden estet-placeholder">
+                  <span class="doctor-placeholder-name text-base sm:text-lg">#Пацієнт</span>
+                  <span class="doctor-placeholder-sub">Фото скоро</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="patientsNav" class="flex flex-col items-center gap-4 mt-6 md:hidden">
+            <div id="patientsDots" class="flex gap-2">
+              <button class="patients-dot w-2 h-2 rounded-full bg-estet-gold transition-all" data-index="0" aria-label="Результат 1"></button>
+              <button class="patients-dot w-2 h-2 rounded-full bg-stone-300 transition-all" data-index="1" aria-label="Результат 2"></button>
+              <button class="patients-dot w-2 h-2 rounded-full bg-stone-300 transition-all" data-index="2" aria-label="Результат 3"></button>
+              <button class="patients-dot w-2 h-2 rounded-full bg-stone-300 transition-all" data-index="3" aria-label="Результат 4"></button>
+            </div>
+            <div class="flex justify-center gap-3">
+              <button id="patientsPrev" class="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center hover:border-estet-gold hover:text-estet-gold transition-colors" aria-label="Попередній">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button id="patientsNext" class="w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center hover:border-estet-gold hover:text-estet-gold transition-colors" aria-label="Наступний">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div class="fade-in bg-white rounded-2xl p-5 sm:p-6 shadow-marble">
+            <div class="flex gap-1 mb-4">
+              <span class="star-gold">★★★★★</span>
+            </div>
+            <p class="text-stone-600 text-sm leading-relaxed mb-4">«Робила вініри — результат перевершив очікування. Природно, красиво, комфортно на кожному етапі.»</p>
+            <p class="font-semibold text-sm">Марія К.</p>
+          </div>
+          <div class="fade-in bg-white rounded-2xl p-5 sm:p-6 shadow-marble">
+            <div class="flex gap-1 mb-4">
+              <span class="star-gold">★★★★★</span>
+            </div>
+            <p class="text-stone-600 text-sm leading-relaxed mb-4">«Протезування пройшло комфортно. Клініка дуже стильна, відчуваєш себе не в лікарні, а в premium просторі.»</p>
+            <p class="font-semibold text-sm">Андрій В.</p>
+          </div>
+          <div class="fade-in bg-white rounded-2xl p-5 sm:p-6 shadow-marble">
+            <div class="flex gap-1 mb-4">
+              <span class="star-gold">★★★★★</span>
+            </div>
+            <p class="text-stone-600 text-sm leading-relaxed mb-4">«Водила дитину — лікар знайшла підхід, без сліз. Тепер ходимо тільки сюди.»</p>
+            <p class="font-semibold text-sm">Оксана Л.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- I. PROSTHETICS -->
+    <section id="prosthetics" class="py-16 lg:py-24 bg-white overflow-x-clip">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="fade-in grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
+          <div class="order-2 lg:order-1">
+            <span class="font-display text-xs tracking-[0.3em] uppercase text-estet-gold">Протезування</span>
+            <h2 class="section-title font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-estet-dark mt-3 mb-6">Відновлення функції та естетики</h2>
+            <p class="text-stone-500 leading-relaxed mb-6">Сучасне протезування — це не компроміс між красою та функціональністю. Ми використовуємо матеріали найвищої якості для коронок, мостів та протезів.</p>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-stone-600">Цирконієві та керамічні коронки</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-stone-600">Мостовидні протези та коронки</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-stone-600">Повне та часткове знімне протезування</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full gold-gradient flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span class="text-stone-600">CAD/CAM технології для точності</span>
+              </li>
+            </ul>
+            <a href="#contacts" class="inline-flex gold-gradient text-white font-semibold px-8 py-3 rounded-full hover:opacity-90 transition-opacity">Консультація з протезування</a>
+          </div>
+          <div class="relative order-1 lg:order-2 pb-8 sm:pb-0">
+            <div class="rounded-2xl overflow-hidden shadow-marble aspect-[4/3] estet-placeholder">
+              <svg class="doctor-placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#D4AF37" opacity="0.5"/></svg>
+              <span class="doctor-placeholder-name text-xl">Протезування</span>
+              <span class="doctor-placeholder-sub">Фото скоро</span>
+            </div>
+            <div class="mt-4 sm:absolute sm:-bottom-6 sm:-left-6 sm:mt-0 bg-estet-cream rounded-2xl p-4 sm:p-5 shadow-marble max-w-xs mx-auto sm:mx-0 text-center sm:text-left">
+              <p class="font-serif text-2xl font-bold text-estet-gold">15+</p>
+              <p class="text-sm text-stone-500">років досвіду в протезуванні</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- J. REVIEWS -->
+    <section id="reviews" class="py-16 lg:py-24 bg-estet-cream">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="fade-in text-center mb-12">
+          <div class="flex justify-center gap-1 mb-4 text-2xl star-gold">★★★★★</div>
+          <h2 class="section-title font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-estet-dark mb-4">Відгуки</h2>
+          <p class="text-stone-500">Що кажуть наші пацієнти</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div class="fade-in bg-white rounded-2xl p-5 sm:p-6 lg:p-8 shadow-marble">
+            <div class="star-gold mb-4">★★★★★</div>
+            <p class="text-stone-600 text-sm sm:text-base leading-relaxed mb-6">«Найкраща клініка в Мукачеві. Вініри виглядають абсолютно природно — навіть подруги не помітили, що це не мої зуби.»</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-estet-cream flex items-center justify-center font-display font-bold text-estet-gold">Н</div>
+              <div>
+                <p class="font-semibold text-sm">Наталія</p>
+                <p class="text-xs text-stone-400">Вініри · 2025</p>
+              </div>
+            </div>
+          </div>
+          <div class="fade-in bg-white rounded-2xl p-5 sm:p-6 lg:p-8 shadow-marble">
+            <div class="star-gold mb-4">★★★★★</div>
+            <p class="text-stone-600 text-sm sm:text-base leading-relaxed mb-6">«Професіоналізм на найвищому рівні. Лікування пройшло швидко, без болю та з чудовим результатом. Рекомендую!»</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-estet-cream flex items-center justify-center font-display font-bold text-estet-gold">В</div>
+              <div>
+                <p class="font-semibold text-sm">Василь</p>
+                <p class="text-xs text-stone-400">Лікування</p>
+              </div>
+            </div>
+          </div>
+          <div class="fade-in bg-white rounded-2xl p-5 sm:p-6 lg:p-8 shadow-marble sm:col-span-2 lg:col-span-1">
+            <div class="star-gold mb-4">★★★★★</div>
+            <p class="text-stone-600 text-sm sm:text-base leading-relaxed mb-6">«Інтер'єр вражає — marble, золото, світло. Атмосфера знімає страх перед стоматологом. Дякую команді!»</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-estet-cream flex items-center justify-center font-display font-bold text-estet-gold">Ю</div>
+              <div>
+                <p class="font-semibold text-sm">Юлія</p>
+                <p class="text-xs text-stone-400">Естетика посмішки</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in text-center mt-10">
+          <a href="https://instagram.com/estet.dent_mukachevo" target="_blank" rel="noopener" class="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-estet-gold font-medium hover:underline text-sm sm:text-base px-2">
+            <span>Більше відгуків у Instagram</span>
+            <span class="font-semibold">@estet.dent_mukachevo</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- K. CONTACTS + FOOTER -->
+    <section id="contacts" class="py-16 lg:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="fade-in text-center mb-12">
+          <span class="font-display text-xs tracking-[0.3em] uppercase text-estet-gold">Контакти</span>
+          <h2 class="section-title font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-estet-dark mt-3 mb-4">Запишіться на консультацію</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+          <!-- Contact Info -->
+          <div class="fade-in space-y-8">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-estet-cream flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-estet-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">Адреса</h3>
+                <p class="text-stone-500">вул. Миру, 71/2<br>Мукачево, 89600<br>Закарпатська область</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-estet-cream flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-estet-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">Телефон</h3>
+                <a href="tel:+380508038008" class="text-estet-gold font-semibold text-lg hover:underline">+380 50 803 80 08</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-estet-cream flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-estet-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-semibold mb-1">Instagram</h3>
+                <a href="https://instagram.com/estet.dent_mukachevo" target="_blank" rel="noopener" class="text-estet-gold hover:underline">@estet.dent_mukachevo</a>
+              </div>
+            </div>
+
+            <!-- Map -->
+            <div class="rounded-2xl overflow-hidden shadow-marble aspect-video">
+              <iframe
+                src="https://maps.google.com/maps?q=%D0%B2%D1%83%D0%BB.+%D0%9C%D0%B8%D1%80%D1%83,+71%2F2,+%D0%9C%D1%83%D0%BA%D0%B0%D1%87%D0%B5%D0%B2%D0%BE,+89600&hl=uk&z=16&output=embed"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Estet Dent на карті — вул. Миру, 71/2, Мукачево, 89600"
+              ></iframe>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="fade-in">
+            <form id="contactForm" class="bg-estet-marble rounded-2xl p-6 lg:p-8 shadow-marble space-y-5">
+              <div>
+                <label for="name" class="block text-sm font-medium mb-2">Ваше ім'я</label>
+                <input type="text" id="name" name="name" required class="form-input w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-estet-gold/50 focus:border-estet-gold transition-all" placeholder="Ім'я">
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium mb-2">Телефон</label>
+                <input type="tel" id="phone" name="phone" required class="form-input w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-estet-gold/50 focus:border-estet-gold transition-all" placeholder="+380">
+              </div>
+              <div>
+                <label for="service" class="block text-sm font-medium mb-2">Послуга</label>
+                <select id="service" name="service" class="form-input w-full px-4 py-3 rounded-xl border border-stone-200 bg-white focus:outline-none focus:ring-2 focus:ring-estet-gold/50 focus:border-estet-gold transition-all">
+                  <option value="veneers">Керамічні вініри</option>
+                  <option value="prosthetics">Протезування</option>
+                  <option value="treatment">Лікування</option>
+                  <option value="aesthetics">Естетика зубів</option>
+                  <option value="kids">Дитяча стоматологія</option>
+                  <option value="other">Інше</option>
+                </select>
+              </div>
+              <button type="submit" class="w-full gold-gradient text-white font-semibold py-3.5 rounded-xl shadow-gold hover:opacity-90 transition-opacity">Записатися на консультацію</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-estet-dark text-white py-10 sm:py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+        <div class="flex items-center gap-3">
+          <svg class="w-10 h-10" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="24" cy="24" r="22" stroke="#D4AF37" stroke-width="1.5" fill="none" opacity="0.3"/>
+            <path d="M24 8 C18 8 14 12 14 18 C14 24 16 28 18 32 C20 36 22 40 24 42 C26 40 28 36 30 32 C32 28 34 24 34 18 C34 12 30 8 24 8Z" fill="#1E293B" stroke="#D4AF37" stroke-width="1.5"/>
+            <path d="M24 14 C21 14 19 16 19 19 C19 22 20 25 21 27 C22 29 23 31 24 33 C25 31 26 29 27 27 C28 25 29 22 29 19 C29 16 27 14 24 14Z" fill="#D4AF37" opacity="0.6"/>
+            <path d="M8 20 Q16 8 24 12 Q32 8 40 20" stroke="#D4AF37" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <p class="font-display font-bold text-lg">Estet Dent</p>
+            <p class="text-stone-400 text-sm">Стоматологічна клініка · Мукачево</p>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4 text-sm text-stone-400 max-w-lg md:max-w-none">
+          <a href="tel:+380508038008" class="hover:text-estet-gold transition-colors whitespace-nowrap">+380 50 803 80 08</a>
+          <span class="hidden sm:inline text-stone-600">·</span>
+          <span class="text-center sm:text-left">вул. Миру, 71/2, Мукачево</span>
+          <span class="hidden sm:inline text-stone-600">·</span>
+          <a href="https://instagram.com/estet.dent_mukachevo" target="_blank" rel="noopener" class="hover:text-estet-gold transition-colors whitespace-nowrap">@estet.dent_mukachevo</a>
+        </div>
+      </div>
+      <div class="border-t border-stone-700 mt-8 pt-8 text-center text-stone-500 text-sm">
+        <p>© 2025 Estet Dent Mukachevo. Усі права захищено.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-[60] hidden" aria-hidden="true">
+    <div id="bookingModalOverlay" class="absolute inset-0 bg-estet-dark/60 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 flex items-end sm:items-center justify-center p-4 pb-6 sm:pb-4">
+      <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto p-5 sm:p-6 lg:p-8 transform scale-95 opacity-0 transition-all duration-300" id="bookingModalPanel" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+        <button id="bookingModalClose" type="button" class="absolute top-4 right-4 w-8 h-8 rounded-full hover:bg-stone-100 flex items-center justify-center text-stone-400 hover:text-stone-600 transition-colors" aria-label="Закрити">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="text-center mb-6">
+          <div class="w-14 h-14 rounded-full gold-gradient flex items-center justify-center mx-auto mb-4 shadow-gold">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 id="bookingModalTitle" class="font-serif text-2xl font-bold text-estet-dark mb-2">Заявку прийнято!</h3>
+          <p class="text-stone-500 text-sm">Оберіть зручний спосіб зв'язку — зателефонуйте або напишіть у Telegram</p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <a id="bookingModalCall" href="tel:+380508038008" class="flex items-center justify-center gap-3 w-full gold-gradient text-white font-semibold py-3.5 rounded-xl shadow-gold hover:opacity-90 transition-opacity">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            Подзвонити
+          </a>
+          <a id="bookingModalTelegram" href="#" target="_blank" rel="noopener" class="flex items-center justify-center gap-3 w-full border-2 border-[#229ED9] text-[#229ED9] font-semibold py-3.5 rounded-xl hover:bg-[#229ED9]/5 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Написати в Telegram
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const menuCloseBtn = document.getElementById('menuCloseBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const hamburgerIcon = document.getElementById('hamburgerIcon');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMenu(open) {
+      mobileMenu.classList.toggle('open', open);
+      menuOverlay.classList.toggle('open', open);
+      hamburgerIcon.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
+      mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      menuOverlay.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    menuBtn.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
+    menuCloseBtn.addEventListener('click', () => toggleMenu(false));
+    menuOverlay.addEventListener('click', () => toggleMenu(false));
+    mobileLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) toggleMenu(false);
+    });
+
+    // Header shadow on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('shadow-md', window.scrollY > 20);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Service tabs
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.dataset.tab;
+
+        serviceCards.forEach(card => {
+          if (tab === 'all') {
+            card.style.display = '';
+            card.classList.remove('hidden');
+          } else {
+            const show = card.dataset.category === tab;
+            card.style.display = show ? '' : 'none';
+            card.classList.toggle('hidden', !show);
+          }
+        });
+      });
+    });
+
+    // Veneer gallery slider (mobile)
+    let veneerSlide = 0;
+    const veneerTrack = document.getElementById('veneerTrack');
+    const veneerGallery = document.getElementById('veneerGallery');
+    const veneerPrev = document.getElementById('veneerPrev');
+    const veneerNext = document.getElementById('veneerNext');
+    const veneerDots = document.querySelectorAll('.veneer-dot');
+    const veneerCount = veneerTrack ? veneerTrack.children.length : 0;
+
+    function updateVeneerSlider() {
+      if (!veneerTrack) return;
+      if (window.innerWidth < 1024) {
+        veneerSlide = Math.min(veneerSlide, veneerCount - 1);
+        veneerTrack.style.transform = `translateX(-${veneerSlide * 100}%)`;
+        veneerDots.forEach((dot, i) => {
+          dot.classList.toggle('bg-estet-gold', i === veneerSlide);
+          dot.classList.toggle('w-2', i !== veneerSlide);
+          dot.classList.toggle('w-5', i === veneerSlide);
+          dot.classList.toggle('bg-stone-300', i !== veneerSlide);
+        });
+        if (veneerPrev) veneerPrev.disabled = veneerSlide === 0;
+        if (veneerNext) veneerNext.disabled = veneerSlide >= veneerCount - 1;
+      } else {
+        veneerTrack.style.transform = 'translateX(0)';
+      }
+    }
+
+    function goToVeneerSlide(index) {
+      veneerSlide = Math.max(0, Math.min(index, veneerCount - 1));
+      updateVeneerSlider();
+    }
+
+    veneerPrev?.addEventListener('click', () => goToVeneerSlide(veneerSlide - 1));
+    veneerNext?.addEventListener('click', () => goToVeneerSlide(veneerSlide + 1));
+    veneerDots.forEach(dot => {
+      dot.addEventListener('click', () => goToVeneerSlide(Number(dot.dataset.index)));
+    });
+
+    let touchStartX = 0;
+    veneerGallery?.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    veneerGallery?.addEventListener('touchend', (e) => {
+      if (window.innerWidth >= 1024) return;
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) {
+        goToVeneerSlide(veneerSlide + (diff > 0 ? 1 : -1));
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', updateVeneerSlider);
+    updateVeneerSlider();
+
+    // Patients results slider (mobile)
+    let patientsSlide = 0;
+    const patientsTrack = document.getElementById('patientsTrack');
+    const patientsGallery = document.getElementById('patientsGallery');
+    const patientsPrev = document.getElementById('patientsPrev');
+    const patientsNext = document.getElementById('patientsNext');
+    const patientsDots = document.querySelectorAll('.patients-dot');
+    const patientsCount = patientsTrack ? patientsTrack.children.length : 0;
+
+    function updatePatientsSlider() {
+      if (!patientsTrack) return;
+      if (window.innerWidth < 768) {
+        patientsSlide = Math.min(patientsSlide, patientsCount - 1);
+        patientsTrack.style.transform = `translateX(-${patientsSlide * 100}%)`;
+        patientsDots.forEach((dot, i) => {
+          dot.classList.toggle('bg-estet-gold', i === patientsSlide);
+          dot.classList.toggle('w-2', i !== patientsSlide);
+          dot.classList.toggle('w-5', i === patientsSlide);
+          dot.classList.toggle('bg-stone-300', i !== patientsSlide);
+        });
+        if (patientsPrev) patientsPrev.disabled = patientsSlide === 0;
+        if (patientsNext) patientsNext.disabled = patientsSlide >= patientsCount - 1;
+      } else {
+        patientsTrack.style.transform = 'translateX(0)';
+      }
+    }
+
+    function goToPatientsSlide(index) {
+      patientsSlide = Math.max(0, Math.min(index, patientsCount - 1));
+      updatePatientsSlider();
+    }
+
+    patientsPrev?.addEventListener('click', () => goToPatientsSlide(patientsSlide - 1));
+    patientsNext?.addEventListener('click', () => goToPatientsSlide(patientsSlide + 1));
+    patientsDots.forEach(dot => {
+      dot.addEventListener('click', () => goToPatientsSlide(Number(dot.dataset.index)));
+    });
+
+    let patientsTouchStartX = 0;
+    patientsGallery?.addEventListener('touchstart', (e) => {
+      patientsTouchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    patientsGallery?.addEventListener('touchend', (e) => {
+      if (window.innerWidth >= 768) return;
+      const diff = patientsTouchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) {
+        goToPatientsSlide(patientsSlide + (diff > 0 ? 1 : -1));
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', updatePatientsSlider);
+    updatePatientsSlider();
+
+    // Contact form + booking modal
+    const contactForm = document.getElementById('contactForm');
+    const bookingModal = document.getElementById('bookingModal');
+    const bookingModalPanel = document.getElementById('bookingModalPanel');
+    const bookingModalOverlay = document.getElementById('bookingModalOverlay');
+    const bookingModalClose = document.getElementById('bookingModalClose');
+    const bookingModalTelegram = document.getElementById('bookingModalTelegram');
+
+    const serviceLabels = {
+      veneers: 'Керамічні вініри',
+      prosthetics: 'Протезування',
+      treatment: 'Лікування',
+      aesthetics: 'Естетика зубів',
+      kids: 'Дитяча стоматологія',
+      other: 'Інше'
+    };
+
+    function openBookingModal(formData) {
+      const name = formData.get('name');
+      const phone = formData.get('phone');
+      const service = serviceLabels[formData.get('service')] || formData.get('service');
+      const telegramText = `Вітаю! Хочу записатися на консультацію в Estet Dent.\n\nІм'я: ${name}\nТелефон: ${phone}\nПослуга: ${service}`;
+
+      bookingModalTelegram.href = `https://t.me/share/url?text=${encodeURIComponent(telegramText)}`;
+      bookingModal.classList.remove('hidden');
+      bookingModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => {
+        bookingModalPanel.classList.remove('scale-95', 'opacity-0');
+        bookingModalPanel.classList.add('scale-100', 'opacity-100');
+      });
+    }
+
+    function closeBookingModal() {
+      bookingModalPanel.classList.add('scale-95', 'opacity-0');
+      bookingModalPanel.classList.remove('scale-100', 'opacity-100');
+      bookingModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(() => bookingModal.classList.add('hidden'), 300);
+    }
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      openBookingModal(formData);
+      contactForm.reset();
+    });
+
+    bookingModalClose.addEventListener('click', closeBookingModal);
+    bookingModalOverlay.addEventListener('click', closeBookingModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !bookingModal.classList.contains('hidden')) closeBookingModal();
+    });
+
+    // Intersection Observer for fade-in animations
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
